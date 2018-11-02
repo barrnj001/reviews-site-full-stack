@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+
+<head>
+<title th:text="${review.title}"></title>
+<link rel="stylesheet" type="text/css" href="../static/css/review.css"
+	th:href="@{/css/review.css}" />
+</head>
+<body>
+	<h1 th:text="${review.title}"></h1>
+	<p>
+		<a th:href="@{${'http://localhost:8080/category?id=' + category.id}}"><span
+			class="category" th:text="${category.name}"></span></a>
+	</p>
+	<div>
+		<ul>
+
+			<li th:each="tag: ${tags}" id="show-tags"><a class="tag"
+				th:text="${tag.name}" th:href="@{/tag(id=${tag.Id})}"> </a></li>
+
+		</ul>
+
+	</div>
+	<div id="tag">
+		<button class="add-tag-button" th:data-id="${review.id}">Add
+			Tag</button>
+	</div>
+	<hr />
+	<p th:text="${review.content}"></p>
+	<a href="http://localhost:8080/show-reviews">Back to all reviews</a>
+	<form method="POST" id="add-comment">
+		<div>
+			<label>UserName:</label> <input type="text" name="userName" />
+		</div>
+		<div>
+			<label>Comment</label>
+			<textarea name="content"></textarea>
+		</div>
+		<input type="hidden" id="review-id" name="reviewId"
+			th:attr="value = ${review.id}" />
+		<div>
+			<button th:formaction="@{add-comment}">submit</button>
+		</div>
+	</form>
+
+	<div id="comments-container">
+		<h2>Comments</h2>
+		<div class="comment" th:each="comment: ${comments}">
+			<h4 th:text="${comment.userName}"></h4>
+			<p th:text="${comment.content}"></p>
+		</div>
+	</div>
+
+	<script th:src="@{/js/review.js}"></script>
+</body>
+</html>

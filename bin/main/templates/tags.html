@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<title>Tags</title>
+<link rel="stylesheet" type="text/css" href="../static/css/review.css"
+	th:href="@{/css/review.css}" />
+
+</head>
+<body>
+	<h1>Tags</h1>
+	<hr />
+	<div class="grid-container">
+		<div class="tag" th:each="tag: ${tags}">
+			<ul>
+				<li>
+					<a th:href="@{/tag(id=${tag.Id})}">
+						<h4 id="show-tags" th:text="${tag.name}"></h4>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<a href="http://localhost:8080/show-reviews">Back to all reviews</a>
+</body>
+</html>
