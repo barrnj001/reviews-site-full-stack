@@ -38,6 +38,9 @@ public class ReviewControllerMockMvcTest {
 	@MockBean
 	private TagRepository tagRepo;
 	
+	@MockBean
+	private CommentRepository commentRepo;
+	
 	@Mock
 	private Category category;
 	
